@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     #region(Variables)
     [SerializeField] private float moveSpeed = 2.5f;
     [SerializeField] private float jumpForce = 5.0f;
-    [SerializeField] private float slideSpeed = 1.5f;
+    [SerializeField] private float slideSpeed = 1.25f;
 
     private Vector2 spawnPoint;
     private float jumpExtra;
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
-        isWalled = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, groundLayer);
+        isWalled = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
 
         if (isWalled && isGrounded) jumpExtra = 1.425f;
         else jumpExtra = 1;
