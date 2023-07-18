@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float slideSpeed = 1.25f;
 
     private Vector2 spawnPoint;
-    private float jumpExtra;
 
     private float jumpWindow = 0.25f;
     private float jumpBuffer;
@@ -48,9 +47,6 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0, groundLayer);
         isWalled = Physics2D.OverlapBox(wallCheck.position, wallCheckSize, 0, wallLayer);
 
-        if (isWalled && isGrounded) jumpExtra = 1.425f;
-        else jumpExtra = 1;
-
         Jump();
 
         if (Input.GetKeyDown(KeyCode.Space) && isWallSliding)
@@ -67,7 +63,7 @@ public class Player : MonoBehaviour
 
         if (isJumping)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce * jumpExtra);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             isJumping = false;
         }
 
